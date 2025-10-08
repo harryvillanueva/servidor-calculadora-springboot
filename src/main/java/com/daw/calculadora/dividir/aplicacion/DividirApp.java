@@ -1,4 +1,4 @@
-package com.daw.calculadora.multiplicar.aplicacion;
+package com.daw.calculadora.dividir.aplicacion;
 
 import com.daw.calculadora.shared.aplicacion.IOperation;
 import com.daw.calculadora.shared.dominio.entities.OperacionEntity;
@@ -9,17 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MultiplicarApp implements IOperation {
+public class DividirApp implements  IOperation{
+
     @Autowired
     private OperacionRepositorio repo;
     @Override
-    public Integer operate(int op1, int op2) {
-
-        int res = Matematico.multiplicar(op1,op2);
-        String tipoOperacion = TipoOperacion.MULTIPLICAR.toString();
+    public Integer operate(int op1, int op2){
+        int res = Matematico.dividir(op1,op2);
+        String tipoOperacion = TipoOperacion.DIVIDIR.toString();
         OperacionEntity operacionEntity =
-        OperacionEntity.builder().operando1(op1).operando2(op2).tipoOperacion(tipoOperacion).resultado(res).build();
+                OperacionEntity.builder().operando1(op1).operando2(op2).tipoOperacion(tipoOperacion).resultado(res).build();
         repo.save(operacionEntity);
         return res;
     }
+
+
 }
